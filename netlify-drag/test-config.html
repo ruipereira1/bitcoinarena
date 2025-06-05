@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Configuração - Bitcoin Monopoly</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .status {
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .success { background: rgba(34, 197, 94, 0.3); }
+        .error { background: rgba(239, 68, 68, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Bitcoin Monopoly - Teste de Configuração</h1>
+        <div id="status" class="status">Verificando configuração...</div>
+        <div id="details"></div>
+    </div>
+
+    <script>
+        // Configuração da URL do servidor
+        window.REACT_APP_SERVER_URL = "https://bitcoinarena.onrender.com";
+        
+        // Teste da configuração
+        const statusDiv = document.getElementById('status');
+        const detailsDiv = document.getElementById('details');
+        
+        function testConfig() {
+            const serverUrl = window.REACT_APP_SERVER_URL;
+            
+            if (serverUrl && serverUrl.includes('bitcoinarena.onrender.com')) {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ Configuração OK!';
+                detailsDiv.innerHTML = `
+                    <p><strong>URL do Servidor:</strong> ${serverUrl}</p>
+                    <p><strong>Status:</strong> Pronto para deploy!</p>
+                    <p><strong>Próximo passo:</strong> Fazer drag desta pasta para o Netlify</p>
+                `;
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ Erro na configuração';
+                detailsDiv.innerHTML = `
+                    <p><strong>URL encontrada:</strong> ${serverUrl || 'Não definida'}</p>
+                    <p><strong>URL esperada:</strong> https://bitcoinarena.onrender.com</p>
+                `;
+            }
+        }
+        
+        // Executar teste
+        setTimeout(testConfig, 500);
+    </script>
+</body>
+</html> 
